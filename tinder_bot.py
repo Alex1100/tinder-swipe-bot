@@ -17,11 +17,15 @@ class TinderBot():
             sleep(4)
             fb_btn = self.driver.find_element_by_xpath('//*[text()= "Log in with Facebook"]')
             fb_btn.click()
+
+            self.continute_login()
+
         except Exception:
             fb_btn = self.driver.find_element_by_xpath('//*[text()= "Log in with Facebook"]')
             fb_btn.click()
+            self.continute_login()
 
-        # switch to login popup
+    def continute_login(self):
         base_window = self.driver.window_handles[0]
         self.driver.switch_to_window(self.driver.window_handles[1])
 
@@ -47,6 +51,8 @@ class TinderBot():
 
         popup_cookies = self.driver.find_element_by_xpath('//*[@id="content"]/div/div[3]/div/div/div/button')
         sleep(4)
+
+        self.auto_swipe()
 
     def like(self):
         like_btn = self.driver.find_element_by_xpath('//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div[1]/div/div[2]/div[4]/button')
@@ -77,4 +83,3 @@ class TinderBot():
 
 bot = TinderBot()
 bot.login()
-bot.auto_swipe()
